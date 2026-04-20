@@ -42,103 +42,103 @@ int sizeArrayList(arrayList* al) {
 	return al->size;
 }
 
-	int insertArrayList(arrayList * al,
-		int pos, elementArrayList item) {
-		if (pos < 0 || pos > al->size) {
-			return 0;
-		}
-
-		if (item.value <= 0)
-		{
-			printf("positive only\n"); //양수만
-			return 0;
-		}
-
-		if (al->size == al->capacity)
-		{
-			int newCapacity = al->capacity * 2;
-
-			elementArrayList* newData = (elementArrayList*)realloc(al->data, sizeof(elementArrayList)*newCapacity);
-
-				if (newData != NULL)
-				{
-					printf("success\n");
-					al->data = newData;
-					al->capacity = newCapacity;
-				}
-		}
-
-		for (int i = al->size - 1; i >= pos; i--) {  //오류수정 size가 아니라 size-1이 되어야 함.
-			al->data[i + 1] = al->data[i];
-		}
-
-		al->data[pos] = item;
-		al->size++;
-
-		return 1;
+int insertArrayList(arrayList * al,
+	int pos, elementArrayList item) {
+	if (pos < 0 || pos > al->size) {
+		return 0;
 	}
 
-	elementArrayList deleteArrayList(
-		arrayList * al, int pos) {
-		if (pos < 0 || pos > al->size - 1) {
-			printf("error\n");
-		}
-
-		elementArrayList item = al->data[pos];
-
-		if (item.value <= 0)
-		{
-			printf("positive only\n");  //양수만
-		}
-
-		for (int i = pos; i < al->size - 1; i++) {
-			al->data[i] = al->data[i + 1];
-		}
-
-		al->size--;
-
-		return item;
+	if (item.value <= 0)
+	{
+		printf("positive only\n"); //양수만
+		return 0;
 	}
 
-	int initArrayList(arrayList * al) {
+	if (al->size == al->capacity)
+	{
+		int newCapacity = al->capacity * 2;
 
-		if (al == NULL)return; //al에 아무것도 없다면, 나가기 추가
+		elementArrayList* newData = (elementArrayList*)realloc(al->data, sizeof(elementArrayList)*newCapacity);
 
-		for (int i = al->size - 1; i >= 0; i--) {
-			deleteArrayList(al, i);
-		}
-		return 1;             //return 1;추가
+			if (newData != NULL)
+			{
+				printf("success\n");
+				al->data = newData;
+				al->capacity = newCapacity;
+			}
 	}
 
-	elementArrayList getItemArrayList(
-		arrayList * al, int pos) {
-		return al->data[pos];
+	for (int i = al->size - 1; i >= pos; i--) {  //오류수정 size가 아니라 size-1이 되어야 함.
+		al->data[i + 1] = al->data[i];
 	}
 
-	int replaceItemArrayList(arrayList * al,
-		int pos, elementArrayList item) {
+	al->data[pos] = item;
+	al->size++;
 
-		if (item.value <= 0)
-		{
-			printf("positive only\n");//양수만
-			return 0;
-		}
+	return 1;
+}
 
-		if (pos < 0 || pos > al->size - 1) {
-			return 0;
-		}
-
-		al->data[pos] = item;
-
-		return 1;
+elementArrayList deleteArrayList(
+	arrayList * al, int pos) {
+	if (pos < 0 || pos > al->size - 1) {
+		printf("error\n");
 	}
 
-	void printArrayList(arrayList * al) {
-		printf("List= ");
+	elementArrayList item = al->data[pos];
 
-		printf("Cap: %d, size: %d\n", al->capacity, al->size);
-
-		for (int i = 0; i < al->size; i++) {
-			printf("(%d %d %d) ", al->data[i].row, al->data[i].col, al->data[i].value);
-		}
+	if (item.value <= 0)
+	{
+		printf("positive only\n");  //양수만
 	}
+
+	for (int i = pos; i < al->size - 1; i++) {
+		al->data[i] = al->data[i + 1];
+	}
+
+	al->size--;
+
+	return item;
+}
+
+int initArrayList(arrayList * al) {
+
+	if (al == NULL)return; //al에 아무것도 없다면, 나가기 추가
+
+	for (int i = al->size - 1; i >= 0; i--) {
+		deleteArrayList(al, i);
+	}
+	return 1;             //return 1;추가
+}
+
+elementArrayList getItemArrayList(
+	arrayList * al, int pos) {
+	return al->data[pos];
+}
+
+int replaceItemArrayList(arrayList * al,
+	int pos, elementArrayList item) {
+
+	if (item.value <= 0)
+	{
+		printf("positive only\n");//양수만
+		return 0;
+	}
+
+	if (pos < 0 || pos > al->size - 1) {
+		return 0;
+	}
+
+	al->data[pos] = item;
+
+	return 1;
+}
+
+void printArrayList(arrayList * al) {
+	printf("List= ");
+
+	printf("Cap: %d, size: %d\n", al->capacity, al->size);
+
+	for (int i = 0; i < al->size; i++) {
+		printf("(%d %d %d) ", al->data[i].row, al->data[i].col, al->data[i].value);
+	}
+}
