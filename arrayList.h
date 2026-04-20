@@ -25,7 +25,7 @@ extern int isFullArrayList(arrayList* al);
 extern int sizeArrayList(arrayList* al);
 extern int insertArrayList(arrayList* al, int pos, elementArrayList item);
 extern elementArrayList deleteArrayList(arrayList* al, int pos);
-extern void initArrayList(arrayList* al);
+extern int initArrayList(arrayList* al);
 extern elementArrayList getItemArrayList(arrayList* al, int pos);
 extern int replaceItemArrayList(arrayList* al, int pos, elementArrayList item);
 extern void printArrayList(arrayList* al);
