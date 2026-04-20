@@ -5,13 +5,13 @@ typedef struct elementArrayListType {
 	int row;
 	int col;
 	int value;
-} elementArrayList; // typedef : struct elementArrayListTpye 앞으로 elementArrayList라고 부르겠다.
+} elementArrayList; 
 
 typedef struct arrayListType
 {
-	elementArrayList* data; // = elementArrayList data[100] 배열은 거의 포인터랑 같음. 포인터 data생성 
+	elementArrayList* data; // = elementArrayList data[100] 배열은 거의 포인터랑 같음.
 	int size; 
-	int capacity;//전체 용량
+	int capacity;
 } arrayList;
 //typedef struct arrayListType arrayList;
 
